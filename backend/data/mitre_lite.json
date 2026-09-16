@@ -1,0 +1,62 @@
+{
+  "T1110": {
+    "name": "Brute Force",
+    "tactic": "Credential Access",
+    "keywords": ["failed_login", "brute_force", "multiple failed attempts", "password guessing"],
+    "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained."
+  },
+  "T1078": {
+    "name": "Valid Accounts",
+    "tactic": "Defense Evasion, Persistence, Privilege Escalation, Initial Access",
+    "keywords": ["successful_login_unusual", "off_hours_login", "valid credentials", "unusual location login"],
+    "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion."
+  },
+  "T1046": {
+    "name": "Network Service Discovery",
+    "tactic": "Discovery",
+    "keywords": ["port_scan", "network scan", "service enumeration"],
+    "description": "Adversaries may attempt to get a listing of services running on remote hosts, including those that may be vulnerable to remote software exploitation."
+  },
+  "T1021": {
+    "name": "Remote Services (Lateral Movement)",
+    "tactic": "Lateral Movement",
+    "keywords": ["lateral_movement", "multiple_asset_access", "remote desktop", "ssh access to multiple hosts"],
+    "description": "Adversaries may use valid accounts to log into a service that accepts remote connections to move laterally within an environment."
+  },
+  "T1068": {
+    "name": "Exploitation for Privilege Escalation",
+    "tactic": "Privilege Escalation",
+    "keywords": ["privilege_escalation", "exploit", "admin access gained"],
+    "description": "Adversaries may exploit software vulnerabilities in an attempt to elevate privileges."
+  },
+  "T1486": {
+    "name": "Data Encrypted for Impact",
+    "tactic": "Impact",
+    "keywords": ["file_encryption", "ransomware", "mass file modification"],
+    "description": "Adversaries may encrypt data on target systems to interrupt availability, such as in a ransomware attack."
+  },
+  "T1071": {
+    "name": "Application Layer Protocol (C2)",
+    "tactic": "Command and Control",
+    "keywords": ["suspicious_outbound", "beaconing", "unusual_dns", "c2 communication"],
+    "description": "Adversaries may communicate using OSI application layer protocols to avoid detection by blending in with existing traffic."
+  },
+  "T1566": {
+    "name": "Phishing",
+    "tactic": "Initial Access",
+    "keywords": ["phishing_email", "malicious_attachment", "credential_harvesting"],
+    "description": "Adversaries may send phishing messages to gain access to victim systems."
+  },
+  "T1059": {
+    "name": "Command and Scripting Interpreter",
+    "tactic": "Execution",
+    "keywords": ["suspicious_process", "powershell_execution", "script_execution", "cmd.exe spawned"],
+    "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries."
+  },
+  "T1005": {
+    "name": "Data from Local System",
+    "tactic": "Collection",
+    "keywords": ["file_access_sensitive", "bulk_file_read", "data_staging"],
+    "description": "Adversaries may search local system sources to find files of interest and sensitive data prior to exfiltration."
+  }
+}

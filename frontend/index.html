@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAWK AI — AI SOC Analyst Copilot</title>
+<meta name="description" content="HAWK AI — an AI-powered SOC analyst copilot that correlates security alerts, maps them to MITRE ATT&CK, and generates incident reports.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.png" alt="HAWK AI" class="brand-logo">
+    <div class="brand-text">
+      <div class="brand-name">HAWK AI</div>
+      <div class="brand-sub">AI SOC Analyst Copilot</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <span class="pill"><span class="dot" id="llmDot"></span><span id="llmText">connecting…</span></span>
+    <span class="pill" id="logPill"><span id="logText">0 logs</span></span>
+    <button id="btnDemo" class="primary">⚡ Run attack demo <span class="kbd">G</span></button>
+    <button id="btnSample" class="ghost">+ Sample logs</button>
+    <button id="btnReset" class="ghost danger">↺ Reset <span class="kbd">R</span></button>
+    <button id="btnKeys" class="icon ghost" title="Keyboard shortcuts">⌘</button>
+    <button id="btnTheme" class="icon ghost" title="Toggle theme (T)">🌙</button>
+  </div>
+</header>
+
+<!-- ============ STATS STRIP ============ -->
+<section class="stats">
+  <div class="stat c-cy"><div class="stat-l">Incidents</div><div class="stat-v" id="sIncidents">0</div></div>
+  <div class="stat c-rd"><div class="stat-l">Critical</div><div class="stat-v" id="sCritical">0</div></div>
+  <div class="stat c-am"><div class="stat-l">High</div><div class="stat-v" id="sHigh">0</div></div>
+  <div class="stat c-vi"><div class="stat-l">Events correlated</div><div class="stat-v" id="sEvents">0</div></div>
+  <div class="stat c-gr"><div class="stat-l">Assets affected</div><div class="stat-v" id="sAssets">0</div></div>
+  <div class="stat c-cy"><div class="stat-l">Source IPs</div><div class="stat-v" id="sIps">0</div></div>
+</section>
+
+<!-- ============ MAIN LAYOUT ============ -->
+<main class="layout">
+
+  <!-- ---- LEFT: incident list ---- -->
+  <section class="col col-list">
+    <div class="col-h">
+      <span>Incidents</span>
+      <span class="count" id="listCount"></span>
+    </div>
+
+    <div class="filters">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+        </svg>
+        <input type="search" id="search" placeholder="Search IP, user, asset, technique…">
+      </div>
+      <div class="chips" id="sevChips">
+        <span class="chip on" data-sev="all">All</span>
+        <span class="chip" data-sev="critical">Critical</span>
+        <span class="chip" data-sev="high">High</span>
+        <span class="chip" data-sev="medium">Medium</span>
+        <span class="chip" data-sev="low">Low</span>
+      </div>
+    </div>
+
+    <div id="list"></div>
+  </section>
+
+  <!-- ---- CENTER: overview / incident detail ---- -->
+  <section class="col col-main" id="main"></section>
+
+  <!-- ---- RIGHT: copilot chat ---- -->
+  <section class="col-chat">
+    <div class="col-h"><span>Ask the copilot</span><span class="count" id="chatScope">all incidents</span></div>
+    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="sugg" id="sugg">
+      <button data-q="Give me a summary">Summary</button>
+      <button data-q="Show me critical incidents">Critical only</button>
+      <button data-q="Any ransomware?">Ransomware?</button>
+      <button data-q="Any brute force attacks?">Brute force?</button>
+    </div>
+    <div class="chat-in">
+      <input type="text" id="chatInput" placeholder="Ask about an IP, user or asset…" style="padding-left:10px">
+      <button id="btnSend" class="primary">Send</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ OVERLAYS ============ -->
+<div class="scan" id="scan"></div>
+<div class="toasts" id="toasts"></div>
+
+<div class="modal-bg" id="keysModal" style="display:none">
+  <div class="modal">
+    <h3>Keyboard shortcuts</h3>
+    <div class="ks"><span>Run full attack demo</span><b>G</b></div>
+    <div class="ks"><span>Reset all logs</span><b>R</b></div>
+    <div class="ks"><span>Focus search</span><b>/</b></div>
+    <div class="ks"><span>Toggle dark / light</span><b>T</b></div>
+    <div class="ks"><span>Next / previous incident</span><b>J / K</b></div>
+    <div class="ks"><span>Close panel or modal</span><b>Esc</b></div>
+    <div style="margin-top:16px;text-align:right">
+      <button id="btnKeysClose" class="primary">Got it</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

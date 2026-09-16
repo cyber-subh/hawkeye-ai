@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+backend/hawkeye.db
+venv/
+.venv/
+*.egg-info/
